@@ -1,26 +1,372 @@
 @import "tailwindcss";
 
+/* Design tokens. The site is intentionally dark-only: the glow effects,
+   aurora and 3D scene are tuned for a dark canvas. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-ink: #070807;
+  --color-surface: #0f110f;
+  --color-surface-raised: #151815;
+  --color-paper: #ecebe4;
+  --color-muted: #8e9188;
+  --color-line: rgb(236 235 228 / 0.09);
+  --color-line-strong: rgb(236 235 228 / 0.18);
+  --color-accent: #c2ec5c;
+  --color-accent-soft: rgb(194 236 92 / 0.14);
+  --color-teal: #3ad6b5;
+  --color-terminal: #030503;
+
+  --radius-card: 1.5rem;
+
+  --z-background: 0;
+  --z-content: 10;
+  --z-grain: 40;
+  --z-nav: 50;
+  --z-glitch: 80;
+  --z-terminal: 90;
+  --z-skip-link: 100;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-ink: var(--color-ink);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-paper: var(--color-paper);
+  --color-muted: var(--color-muted);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+  --color-accent: var(--color-accent);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-teal: var(--color-teal);
+  --color-terminal: var(--color-terminal);
+
+  --radius-card: var(--radius-card);
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility page-gutter {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* In the base layer so Tailwind utilities (e.g. outline-none) can override them. */
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-ink);
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-geist), system-ui, sans-serif;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- Background layers ---------- */
+
+.dot-grid {
+  background-image: radial-gradient(rgb(236 235 228 / 0.11) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(8%, 6%, 0) scale(1.15);
+  }
+  100% {
+    transform: translate3d(-6%, 10%, 0) scale(0.95);
+  }
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Cards ---------- */
+
+/* Spotlight: a soft glow that follows the pointer (vars set by SpotlightCard). */
+.spotlight-card::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgb(194 236 92 / 0.1),
+    transparent 45%
+  );
+}
+
+.spotlight-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    300px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgb(194 236 92 / 0.55),
+    transparent 50%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.spotlight-card:hover::before,
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* Border beam: a light that travels around a card's edge. */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.border-beam {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0 70%,
+    var(--color-teal) 82%,
+    var(--color-accent) 92%,
+    transparent 100%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: beam-spin 7s linear infinite;
+}
+
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+/* ---------- Marquee ---------- */
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee-track[data-reverse] {
+  animation-direction: reverse;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Pulse dot ---------- */
+
+.pulse-dot {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(194 236 92 / 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgb(194 236 92 / 0);
+  }
+}
+
+/* ---------- Dev Mode: glitch ---------- */
+
+html[data-glitching] #content,
+html[data-glitching] #site-header {
+  animation: page-glitch 0.7s steps(2, end) both;
+}
+
+@keyframes page-glitch {
+  0% {
+    transform: none;
+    filter: none;
+  }
+  15% {
+    transform: translate(-6px, 2px) skewX(-4deg);
+    filter: hue-rotate(80deg) contrast(1.6);
+    clip-path: inset(10% 0 55% 0);
+  }
+  30% {
+    transform: translate(8px, -3px);
+    filter: invert(0.1) saturate(3);
+    clip-path: inset(45% 0 20% 0);
+  }
+  45% {
+    transform: translate(-3px, 0) skewX(6deg);
+    filter: hue-rotate(-60deg) contrast(2);
+    clip-path: inset(0 0 70% 0);
+  }
+  60% {
+    transform: translate(5px, 4px);
+    clip-path: inset(60% 0 5% 0);
+  }
+  80% {
+    transform: scaleY(0.02);
+    filter: brightness(3);
+    clip-path: none;
+  }
+  100% {
+    transform: scaleY(0.002);
+    filter: brightness(4);
+    opacity: 0;
+  }
+}
+
+.glitch-slices {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(194 236 92 / 0.12) 0 2px,
+    transparent 2px 6px
+  );
+  animation: slice-shift 0.12s steps(3) infinite;
+}
+
+@keyframes slice-shift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-12px);
+  }
+  100% {
+    transform: translateX(8px);
+  }
+}
+
+.rgb-split {
+  text-shadow:
+    -3px 0 rgb(255 0 80 / 0.85),
+    3px 0 rgb(0 220 255 / 0.85);
+}
+
+/* ---------- Dev Mode: CRT terminal ---------- */
+
+.crt-scanlines {
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.28) 0 1px, transparent 1px 3px);
+}
+
+.crt-vignette {
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.75) 100%);
+}
+
+.crt-flicker {
+  animation: crt-flicker 4s infinite;
+}
+
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 0.96;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  52% {
+    opacity: 0.97;
+  }
+}
+
+.phosphor {
+  color: var(--color-accent);
+  text-shadow:
+    0 0 6px rgb(194 236 92 / 0.55),
+    0 0 18px rgb(194 236 92 / 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .marquee-track,
+  .border-beam,
+  .pulse-dot,
+  .crt-flicker,
+  .glitch-slices {
+    animation: none;
+  }
+
+  html[data-glitching] #content,
+  html[data-glitching] #site-header {
+    animation: none;
+  }
+}
+
+/* ---------- Lenis ---------- */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }

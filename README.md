@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Josh Ziemenn Tan · Portfolio
 
-## Getting Started
+My personal portfolio: a dark, bento-style site with a 3D particle gourd (a nod to GourdVision, our thesis), my journey told as a `git log`, my projects, my published research, and a hidden **Dev Mode**.
 
-First, run the development server:
+> Press <kbd>~</kbd> anywhere on the site (or flip the Dev mode switch) and the page "decompiles" into a working terminal. Try `help`, `ls projects`, `ai` or `sudo hire josh`.
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router, TypeScript) with Turbopack
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [Motion](https://motion.dev) for animation, [Lenis](https://lenis.darkroom.engineering) for smooth scrolling
+- [Three.js](https://threejs.org) + [React Three Fiber](https://r3f.docs.pmnd.rs) for the particle gourd
+- [Lucide](https://lucide.dev) icons
+
+## Run it locally
+
+Requires Node.js 20.9 or newer.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build (what Vercel runs)
+npm run start   # serve the production build
+npm run lint    # ESLint
+```
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+Everything personal (intro, journey, projects, AI section, research, education, links, freelance status) lives in one file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/content/profile.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Both the normal page and the Dev Mode terminal read from it, so edit text there and both update. To stop showing "Open for freelance projects", set `freelance.isOpen` to `false`.
 
-## Deploy on Vercel
+Project screenshots live in `public/projects/`, and the portrait in `public/images/`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/              layout, page, global styles and design tokens
+  components/
+    layout/         nav, footer, background, providers
+    sections/       hero, journey, AI, work, research, contact
+    scene/          the 3D particle gourd
+    ui/             shared pieces (cards, buttons, email menu…)
+  content/          profile.ts, the single source of truth for site content
+  features/
+    dev-mode/       the terminal easter egg (commands, glitch, terminal UI)
+  hooks/, lib/      small shared helpers
+```
+
+## Deploying
+
+The site is fully static and deploys to [Vercel](https://vercel.com) with zero configuration: import the GitHub repo, keep the detected Next.js settings, and deploy. Every push to `main` redeploys automatically. No environment variables are needed.
