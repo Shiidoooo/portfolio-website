@@ -60,8 +60,8 @@ export function HeroBento() {
                 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] font-semibold tracking-tight"
               >
                 Hi, I&apos;m Josh.
-                <span className="block bg-linear-to-r from-accent via-[#9be59a] to-teal bg-clip-text font-serif font-normal text-transparent italic">
-                  I build for the web.
+                <span className="mt-1 block bg-linear-to-r from-accent via-[#9be59a] to-teal bg-clip-text pb-1 font-serif text-[0.62em] leading-tight font-normal tracking-normal text-transparent italic">
+                  Full-stack developer.
                 </span>
               </h1>
               <p className="max-w-lg text-base leading-relaxed text-paper/70 md:text-lg">{profile.intro}</p>
