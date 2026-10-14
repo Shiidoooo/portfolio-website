@@ -1,8 +1,8 @@
 import { Footer } from "@/components/layout/Footer";
+import { About } from "@/components/sections/About";
 import { AiSection } from "@/components/sections/AiSection";
 import { Contact } from "@/components/sections/Contact";
 import { HeroBento } from "@/components/sections/HeroBento";
-import { Journey } from "@/components/sections/Journey";
 import { Research } from "@/components/sections/Research";
 import { Work } from "@/components/sections/Work";
 
@@ -11,7 +11,7 @@ export default function Home() {
     <div id="content" className="relative z-(--z-content)">
       <main>
         <HeroBento />
-        <Journey />
+        <About />
         <AiSection />
         <Work />
         <Research />

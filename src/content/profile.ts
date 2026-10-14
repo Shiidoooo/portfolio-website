@@ -62,6 +62,20 @@ export type Education = {
   period: string;
 };
 
+export type Role = {
+  title: string;
+  employmentType: "Full-time" | "Contract" | "Internship";
+  period: string;
+  highlights: string[];
+};
+
+// One company with its roles, newest first (how LinkedIn groups promotions).
+export type Employer = {
+  company: string;
+  location: string;
+  roles: Role[];
+};
+
 export type Publication = {
   title: string;
   authors: string[];
@@ -197,7 +211,46 @@ export const aiPillars: AiPillar[] = [
   },
 ];
 
-// Milestones only, newest first like `git log`. Keep it short.
+const juniorDeveloperRole: Role = {
+  title: "Junior Developer",
+  employmentType: "Full-time",
+  period: "Sep 2026 – Present",
+  highlights: [
+    "Maintain, build and improve PhilFirst's web platforms, from internal systems to public-facing websites.",
+    "Develop new APIs and improve existing ones.",
+  ],
+};
+
+const webDeveloperRole: Role = {
+  title: "Web Developer",
+  employmentType: "Contract",
+  period: "Jun 2026 – Aug 2026",
+  highlights: [
+    "Built internal tools and web apps in PHP, connecting the frontend pages to backend APIs.",
+    "Wrote the SQL and mapping workflows that keep MySQL, Oracle and SQL Server in sync.",
+  ],
+};
+
+const internRole: Role = {
+  title: "Web Developer Intern",
+  employmentType: "Internship",
+  period: "Feb 2026 – Jun 2026",
+  highlights: [
+    "Built a C# Windows Forms app that moves data between MySQL and Oracle, plus PHP APIs that map records into the system.",
+    "Made a vanilla PHP tool with PHPMailer that splits PDFs automatically and emails them out.",
+    "Helped build an online service request system, where requests are filed, tracked and resolved in one place.",
+  ],
+};
+
+export const experience: Employer[] = [
+  {
+    company: profile.currentCompany,
+    location: "Makati, Metro Manila",
+    roles: [juniorDeveloperRole, webDeveloperRole, internRole],
+  },
+];
+
+// Milestones only, newest first like `git log`. Shown by Dev Mode's `git log`. Keep it short.
 export const journey: Commit[] = [
   {
     date: "Oct 2026",
@@ -215,19 +268,13 @@ export const journey: Commit[] = [
     date: "Sep 2026",
     message: "Join PhilFirst full-time as a Junior Developer",
     tag: "work",
-    details: [
-      "Maintain, build and improve PhilFirst's web platforms, from internal systems to public-facing websites.",
-      "Develop new APIs and improve existing ones.",
-    ],
+    details: juniorDeveloperRole.highlights,
   },
   {
     date: "Jun 2026",
     message: "Start a contract as Web Developer at PhilFirst",
     tag: "work",
-    details: [
-      "Built internal tools and web apps in PHP, connecting the frontend pages to backend APIs.",
-      "Wrote the SQL and mapping workflows that keep MySQL, Oracle and SQL Server in sync.",
-    ],
+    details: webDeveloperRole.highlights,
   },
   {
     // Confirm: exact graduation month.
@@ -240,11 +287,7 @@ export const journey: Commit[] = [
     date: "Feb 2026",
     message: "Start my internship at PhilFirst Non-Life",
     tag: "work",
-    details: [
-      "Built a C# Windows Forms app that moves data between MySQL and Oracle, plus PHP APIs that map records into the system.",
-      "Made a vanilla PHP tool with PHPMailer that splits PDFs automatically and emails them out.",
-      "Helped build an online service request system, where requests are filed, tracked and resolved in one place.",
-    ],
+    details: internRole.highlights,
   },
   {
     date: "Oct 2025",

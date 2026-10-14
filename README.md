@@ -1,6 +1,6 @@
 # Josh Ziemenn Tan · Portfolio
 
-My personal portfolio: a dark, bento-style site with a 3D particle gourd (a nod to GourdVision, our thesis), my journey told as a `git log`, my projects, my published research, and a hidden **Dev Mode**.
+My personal portfolio: a bento-style site (dark and light themes, following the visitor's system setting) featuring a 3D particle gourd (a nod to GourdVision, our thesis), my experience laid out LinkedIn-style, my projects, my published research, and a hidden **Dev Mode** with my journey as a `git log`.
 
 > Press <kbd>~</kbd> anywhere on the site (or flip the Dev mode switch) and the page "decompiles" into a working terminal. Try `help`, `ls projects`, `ai` or `sudo hire josh`.
 
@@ -33,7 +33,7 @@ npm run lint    # ESLint
 
 ## Editing content
 
-Everything personal (intro, journey, projects, AI section, research, education, links, freelance status) lives in one file:
+Everything personal (intro, experience, journey, projects, AI section, research, education, links, freelance status) lives in one file:
 
 ```
 src/content/profile.ts
@@ -50,12 +50,13 @@ src/
   app/              layout, page, global styles and design tokens
   components/
     layout/         nav, footer, background, providers
-    sections/       hero, journey, AI, work, research, contact
+    sections/       hero, about (experience + education), AI, work, research, contact
     scene/          the 3D particle gourd
     ui/             shared pieces (cards, buttons, email menu…)
   content/          profile.ts, the single source of truth for site content
   features/
     dev-mode/       the terminal easter egg (commands, glitch, terminal UI)
+    theme/          light/dark toggle and the no-flash theme script
   hooks/, lib/      small shared helpers
 ```
 

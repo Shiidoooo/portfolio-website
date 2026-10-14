@@ -12,6 +12,7 @@ export function GlitchOverlay() {
   return (
     <motion.div
       aria-hidden="true"
+      data-theme="dark"
       className="pointer-events-none fixed inset-0 z-(--z-glitch) flex items-center justify-center"
       initial={{ backgroundColor: "rgba(3,5,3,0)" }}
       animate={{ backgroundColor: ["rgba(3,5,3,0)", "rgba(3,5,3,0.4)", "rgba(3,5,3,1)"] }}

@@ -4,6 +4,7 @@ import { AppProviders } from "@/components/layout/AppProviders";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
 import { Nav } from "@/components/layout/Nav";
 import { DevModeLayer } from "@/features/dev-mode/DevModeLayer";
+import { THEME_INIT_SCRIPT } from "@/features/theme/theme";
 import { profile } from "@/content/profile";
 import "./globals.css";
 
@@ -26,8 +27,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="dark"
+      // The inline script below swaps data-theme before hydration.
+      suppressHydrationWarning
       className={`${bricolage.variable} ${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <a
           href="#content"

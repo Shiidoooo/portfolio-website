@@ -1,4 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+"use client";
+
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import { GitHubIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -30,6 +33,10 @@ function ContributionGraph() {
   );
 }
 
+// From md up, projects past this count wait behind "Show more" (phones swipe through them all).
+// With the featured card spanning two columns, 4 projects plus the GitHub card fill two rows.
+const INITIAL_PROJECT_COUNT = 4;
+
 // GitHub's language colors.
 const LANGUAGE_COLOR: Record<ProjectLanguage, string> = {
   TypeScript: "#3178c6",
@@ -47,8 +54,8 @@ function ProjectCard({ project }: { project: Project }) {
       {project.isFeatured && <span aria-hidden="true" className="border-beam" />}
       <div
         className={cn(
-          "h-52 border-b border-line",
-          project.isFeatured && "lg:order-2 lg:h-auto lg:min-h-[30rem] lg:border-b-0 lg:border-l",
+          "h-44 border-b border-line",
+          project.isFeatured && "lg:order-2 lg:h-auto lg:min-h-[26rem] lg:border-b-0 lg:border-l",
         )}
       >
         <ProjectCover project={project} />
@@ -111,9 +118,9 @@ function ProjectCard({ project }: { project: Project }) {
 
 function GitHubCard() {
   return (
-    <div className="flex h-full flex-col justify-between gap-8 rounded-card border border-dashed border-line-strong p-6 md:p-7">
+    <div className="@container flex h-full flex-col justify-between gap-8 rounded-card border border-dashed border-line-strong p-6 md:p-7">
       <ContributionGraph />
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex flex-col gap-6 @2xl:flex-row @2xl:items-end @2xl:justify-between">
         <div className="flex items-center gap-4">
           <GitHubIcon className="size-9 shrink-0 text-paper/80" />
           <div className="flex flex-col gap-1">
@@ -145,9 +152,12 @@ function GitHubCard() {
 }
 
 export function Work() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hiddenProjectCount = Math.max(0, projects.length - INITIAL_PROJECT_COUNT);
+
   return (
-    <section id="work" aria-labelledby="work-title" className="page-gutter py-20 md:py-28">
-      <div className="flex flex-col gap-12">
+    <section id="work" aria-labelledby="work-title" className="page-gutter py-14 md:py-20">
+      <div className="flex flex-col gap-8 md:gap-10">
         <SectionHeading
           kicker="work"
           titleId="work-title"
@@ -158,18 +168,38 @@ export function Work() {
 
         <SwipeList label="Projects" className="md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <li key={project.slug} className={cn(SWIPE_ITEM_CLASS, project.isFeatured && "md:col-span-2")}>
+            <li
+              key={project.slug}
+              className={cn(
+                SWIPE_ITEM_CLASS,
+                project.isFeatured && "md:col-span-2",
+                !isExpanded && index >= INITIAL_PROJECT_COUNT && "md:hidden",
+              )}
+            >
               <Reveal className="h-full" delay={(index % 3) * 0.06}>
                 <ProjectCard project={project} />
               </Reveal>
             </li>
           ))}
-          <li className={cn(SWIPE_ITEM_CLASS, "md:col-span-2 lg:col-span-2")}>
+          {/* One tile while collapsed so it completes the second row; a wide closing row once expanded. */}
+          <li className={cn(SWIPE_ITEM_CLASS, isExpanded && "md:col-span-2")}>
             <Reveal className="h-full">
               <GitHubCard />
             </Reveal>
           </li>
         </SwipeList>
+
+        {hiddenProjectCount > 0 && (
+          <button
+            type="button"
+            aria-expanded={isExpanded}
+            onClick={() => setIsExpanded((expanded) => !expanded)}
+            className="hidden min-h-11 items-center gap-2 self-center rounded-full border border-line-strong px-5 text-sm font-medium transition-colors hover:border-accent/60 hover:bg-accent-soft md:inline-flex"
+          >
+            {isExpanded ? "Show fewer projects" : `Show ${hiddenProjectCount} more projects`}
+            <ChevronDown aria-hidden="true" className={cn("size-4 transition-transform", isExpanded && "rotate-180")} />
+          </button>
+        )}
       </div>
     </section>
   );

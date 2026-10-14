@@ -9,19 +9,19 @@ const PILLAR_ICONS: LucideIcon[] = [Bot, Workflow, Sparkles, BrainCircuit];
 
 export function AiSection() {
   return (
-    <section id="ai" aria-labelledby="ai-title" className="page-gutter py-20 md:py-28">
-      <div className="flex flex-col gap-12">
+    <section id="ai" aria-labelledby="ai-title" className="page-gutter py-14 md:py-20">
+      <div className="flex flex-col gap-8 md:gap-10">
         <SectionHeading kicker="ai" titleId="ai-title" description={aiIntro}>
           Building with <span className="font-serif font-normal text-accent italic">AI</span>
         </SectionHeading>
 
-        <SwipeList label="How I use AI" className="md:grid-cols-2">
+        <SwipeList label="How I use AI" className="md:grid-cols-2 xl:grid-cols-4">
           {aiPillars.map((pillar, index) => {
             const Icon = PILLAR_ICONS[index % PILLAR_ICONS.length];
             return (
               <li key={pillar.title} className={SWIPE_ITEM_CLASS}>
                 <Reveal className="h-full" delay={index * 0.08}>
-                  <SpotlightCard className="flex h-full flex-col gap-4 p-6 md:p-7">
+                  <SpotlightCard className="flex h-full flex-col gap-4 p-6">
                     <span className="flex size-11 items-center justify-center rounded-xl border border-accent/25 bg-accent-soft text-accent">
                       <Icon aria-hidden="true" className="size-5" />
                     </span>

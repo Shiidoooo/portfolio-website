@@ -29,7 +29,7 @@ export function HeroBento() {
   const { enterDevMode } = useDevMode();
 
   return (
-    <section id="top" aria-labelledby="hero-title" className="page-gutter pt-24 pb-20 md:pt-28">
+    <section id="top" aria-labelledby="hero-title" className="page-gutter pt-24 pb-4 md:pt-28 md:pb-6">
       <div className="grid auto-rows-[minmax(10rem,auto)] grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
         {/* Intro */}
         <motion.div {...tileMotion(0)} className="md:col-span-2 lg:row-span-2">
@@ -60,7 +60,7 @@ export function HeroBento() {
                 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] font-semibold tracking-tight"
               >
                 Hi, I&apos;m Josh.
-                <span className="mt-1 block bg-linear-to-r from-accent via-[#9be59a] to-teal bg-clip-text pb-1 font-serif text-[0.62em] leading-tight font-normal tracking-normal text-transparent italic">
+                <span className="mt-1 block bg-linear-to-r from-accent via-[#9be59a] to-teal light:via-[#2f7d3a] bg-clip-text pb-1 font-serif text-[0.62em] leading-tight font-normal tracking-normal text-transparent italic">
                   Full-stack developer.
                 </span>
               </h1>
@@ -108,16 +108,16 @@ export function HeroBento() {
           </SpotlightCard>
         </motion.div>
 
-        {/* 3D gourd */}
-        <motion.div {...tileMotion(1)} className="lg:row-span-2">
-          <SpotlightCard className="h-full bg-[radial-gradient(ellipse_at_center,rgb(58_214_181/0.12),transparent_70%)]">
+        {/* 3D gourd: a dark "screen" in both themes, since the particles glow on black. */}
+        <motion.div {...tileMotion(1)} data-theme="dark" className="lg:row-span-2">
+          <SpotlightCard className="h-full bg-surface bg-[radial-gradient(ellipse_at_center,rgb(58_214_181/0.12),transparent_70%)]">
             <GourdScanner />
           </SpotlightCard>
         </motion.div>
 
         {/* Portrait + right now */}
         <motion.div {...tileMotion(2)} className="lg:row-span-2">
-          <SpotlightCard className="group relative h-full min-h-[26rem] md:min-h-80">
+          <SpotlightCard className="group relative h-full min-h-[22rem] md:min-h-80">
             <Image
               src={portrait.src}
               alt={portrait.alt}
@@ -148,7 +148,7 @@ export function HeroBento() {
         </motion.div>
 
         {/* Dev Mode teaser */}
-        <motion.div {...tileMotion(4)} className="md:col-span-2 lg:col-span-1">
+        <motion.div {...tileMotion(4)} data-theme="dark" className="md:col-span-2 lg:col-span-1">
           <button
             type="button"
             onClick={enterDevMode}

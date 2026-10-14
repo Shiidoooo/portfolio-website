@@ -7,20 +7,20 @@ import { CopyEmailButton } from "./CopyEmailButton";
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="page-gutter py-20 md:py-28">
+    <section id="contact" aria-labelledby="contact-title" className="page-gutter py-14 md:py-20">
       <Reveal>
-        <div className="relative overflow-hidden rounded-card border border-line bg-surface px-6 py-16 text-center md:px-12 md:py-24">
+        <div className="relative overflow-hidden rounded-card border border-line bg-surface px-6 py-12 text-center md:px-12 md:py-16">
           <div aria-hidden="true" className="dot-grid absolute inset-0" />
           <div
             aria-hidden="true"
             className="absolute -top-40 left-1/2 h-80 w-[36rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[100px]"
           />
 
-          <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
+          <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-5">
             <p className="font-mono text-xs text-accent">{"// contact"}</p>
             <h2
               id="contact-title"
-              className="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[1] font-semibold tracking-tight"
+              className="font-display text-[clamp(2.25rem,6vw,4rem)] leading-[1] font-semibold tracking-tight"
             >
               Say <span className="font-serif font-normal text-accent italic">hi</span>
             </h2>

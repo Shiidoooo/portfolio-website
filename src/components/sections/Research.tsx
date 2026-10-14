@@ -9,14 +9,14 @@ export function Research() {
   const [leadAuthor, ...coAuthors] = publication.authors;
 
   return (
-    <section id="research" aria-labelledby="research-title" className="page-gutter py-20 md:py-28">
-      <div className="flex flex-col gap-12">
+    <section id="research" aria-labelledby="research-title" className="page-gutter py-14 md:py-20">
+      <div className="flex flex-col gap-8 md:gap-10">
         <SectionHeading kicker="research" titleId="research-title">
           Published <span className="font-serif font-normal text-accent italic">research</span>
         </SectionHeading>
 
         <Reveal>
-          <SpotlightCard as="article" className="grid gap-8 p-6 md:p-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-12">
+          <SpotlightCard as="article" className="grid gap-8 p-6 md:p-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-12">
             <span aria-hidden="true" className="border-beam" />
 
             <div className="flex flex-col gap-5">

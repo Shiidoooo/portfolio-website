@@ -1,9 +1,10 @@
 import { DevModeToggle } from "@/features/dev-mode/DevModeToggle";
+import { ThemeToggle } from "@/features/theme/ThemeToggle";
 import { profile } from "@/content/profile";
 import { MobileMenu } from "./MobileMenu";
 
 const NAV_LINKS = [
-  { label: "About", href: "#journey" },
+  { label: "About", href: "#about" },
   { label: "AI", href: "#ai" },
   { label: "Work", href: "#work" },
   { label: "Research", href: "#research" },
@@ -33,6 +34,7 @@ export function Nav() {
           ))}
         </ul>
         <div className="flex items-center">
+          <ThemeToggle />
           <DevModeToggle />
           <MobileMenu links={NAV_LINKS} />
         </div>

@@ -19,7 +19,14 @@ export function ProjectCover({ project }: { project: Project }) {
     );
   }
 
-  if (project.art) return <ProjectCoverArt art={project.art} />;
+  // The illustrations are drawn for a dark canvas, so they stay dark in light mode too.
+  if (project.art) {
+    return (
+      <div data-theme="dark" className="h-full bg-surface">
+        <ProjectCoverArt art={project.art} />
+      </div>
+    );
+  }
 
   const initials = project.title
     .split(" ")

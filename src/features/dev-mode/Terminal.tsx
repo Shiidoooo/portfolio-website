@@ -199,6 +199,7 @@ export function Terminal() {
       role="dialog"
       aria-modal="true"
       aria-label="Dev mode terminal"
+      data-theme="dark"
       className="fixed inset-0 z-(--z-terminal) flex flex-col bg-terminal font-mono text-[13px] md:text-sm"
       initial={{ scaleY: 0.004, scaleX: 0.7, opacity: 0, filter: "brightness(4)" }}
       animate={{ scaleY: 1, scaleX: 1, opacity: 1, filter: "brightness(1)" }}

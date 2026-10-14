@@ -19,8 +19,9 @@ type GourdCanvasProps = {
   isBurstingRef: RefObject<boolean>;
 };
 
-function readCssColor(variableName: string) {
-  return new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue(variableName).trim());
+// Read from the canvas itself, not <html>, so it picks up the tile's forced dark theme.
+function readCssColor(element: Element, variableName: string) {
+  return new THREE.Color(getComputedStyle(element).getPropertyValue(variableName).trim());
 }
 
 function GourdPoints({ isReducedMotion, isBurstingRef }: Omit<GourdCanvasProps, "isActive">) {
@@ -36,9 +37,9 @@ function GourdPoints({ isReducedMotion, isBurstingRef }: Omit<GourdCanvasProps, 
       uBurst: { value: 0 },
       uSize: { value: POINT_SIZE },
       uPixelRatio: { value: gl.getPixelRatio() },
-      uAccent: { value: readCssColor("--color-accent") },
-      uTeal: { value: readCssColor("--color-teal") },
-      uPaper: { value: readCssColor("--color-paper") },
+      uAccent: { value: readCssColor(gl.domElement, "--color-accent") },
+      uTeal: { value: readCssColor(gl.domElement, "--color-teal") },
+      uPaper: { value: readCssColor(gl.domElement, "--color-paper") },
     }),
     [gl, isReducedMotion],
   );

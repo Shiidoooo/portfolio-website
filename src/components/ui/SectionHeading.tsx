@@ -13,7 +13,7 @@ export function SectionHeading({ kicker, titleId, children, description }: Secti
       <p className="font-mono text-xs text-accent">{`// ${kicker}`}</p>
       <h2
         id={titleId}
-        className="font-display text-[clamp(2.25rem,5.5vw,4rem)] leading-[1.02] font-semibold tracking-tight"
+        className="font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.02] font-semibold tracking-tight"
       >
         {children}
       </h2>
