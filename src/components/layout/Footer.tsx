@@ -9,7 +9,11 @@ export function Footer() {
         Manila · <LocalTime />
       </span>
       <span>
-        Built with Next.js, Motion & Three.js · try <kbd className="rounded border border-line-strong px-1.5 text-accent">~</kbd>
+        Built with Next.js, Motion & Three.js
+        <span className="pointer-coarse:hidden">
+          {" "}
+          · try <kbd className="rounded border border-line-strong px-1.5 text-accent">~</kbd>
+        </span>
       </span>
     </footer>
   );

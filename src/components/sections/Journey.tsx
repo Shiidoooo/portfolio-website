@@ -1,6 +1,8 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -16,6 +18,8 @@ const TAG_CLASS: Record<Commit["tag"], string> = {
 };
 
 export function Journey() {
+  const [isAboutExpanded, setIsAboutExpanded] = useState(false);
+
   return (
     <section id="journey" aria-labelledby="journey-title" className="page-gutter py-20 md:py-28">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
@@ -23,10 +27,22 @@ export function Journey() {
           <SectionHeading kicker="about" titleId="journey-title">
             Started from zero. <span className="font-serif font-normal text-accent italic">Still learning.</span>
           </SectionHeading>
-          <Reveal className="flex flex-col gap-5 leading-relaxed text-paper/75">
-            {about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+          <Reveal className="flex max-w-2xl flex-col gap-5 leading-relaxed text-paper/75">
+            {about.map((paragraph, index) => (
+              <p key={paragraph} className={cn(index > 0 && !isAboutExpanded && "hidden md:block")}>
+                {paragraph}
+              </p>
             ))}
+            {/* Phones show the first paragraph only, to keep the page short. */}
+            <button
+              type="button"
+              aria-expanded={isAboutExpanded}
+              onClick={() => setIsAboutExpanded((expanded) => !expanded)}
+              className="inline-flex min-h-11 items-center gap-1.5 self-start font-mono text-xs text-accent md:hidden"
+            >
+              {isAboutExpanded ? "Show less" : "Read more"}
+              <ChevronDown aria-hidden="true" className={cn("size-4 transition-transform", isAboutExpanded && "rotate-180")} />
+            </button>
           </Reveal>
           <Reveal className="flex flex-col gap-4 border-t border-line pt-6">
             <p className="font-mono text-xs text-muted">education</p>

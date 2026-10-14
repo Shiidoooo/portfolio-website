@@ -15,6 +15,7 @@ type EmailMenuProps = {
   label: string;
   variant: ButtonVariant;
   align?: "start" | "center";
+  className?: string;
 };
 
 const ITEM_CLASS =
@@ -22,7 +23,7 @@ const ITEM_CLASS =
 
 // "Email me" button that lets visitors choose Gmail, Outlook, their mail app, or copying the address.
 // Opens upward because both places it lives sit near the bottom of a clipped card.
-export function EmailMenu({ email, subject, label, variant, align = "start" }: EmailMenuProps) {
+export function EmailMenu({ email, subject, label, variant, align = "start", className }: EmailMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { status, copy } = useCopyToClipboard();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,14 +53,14 @@ export function EmailMenu({ email, subject, label, variant, align = "start" }: E
   }, [isOpen]);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className={cn("relative", className)}>
       <button
         ref={triggerRef}
         type="button"
         aria-expanded={isOpen}
         aria-controls={menuId}
         onClick={() => setIsOpen((open) => !open)}
-        className={buttonClassName(variant)}
+        className={buttonClassName(variant, "w-full")}
       >
         <Mail aria-hidden="true" className="size-4" />
         {label}

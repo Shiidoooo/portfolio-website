@@ -62,7 +62,10 @@ export function GourdScanner() {
         <span className="rounded-md border border-accent/30 bg-ink/70 px-2 py-1 whitespace-nowrap text-accent backdrop-blur-sm">
           {SCAN_LABELS[labelIndex]}
         </span>
-        <span className="whitespace-nowrap text-muted">hover me</span>
+        <span className="whitespace-nowrap text-muted">
+          <span className="pointer-coarse:hidden">hover me</span>
+          <span className="hidden pointer-coarse:inline">tap me</span>
+        </span>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { SWIPE_ITEM_CLASS, SwipeList } from "@/components/ui/SwipeList";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects, socialLinks, type Project, type ProjectLanguage } from "@/content/profile";
 import { cn } from "@/lib/cn";
@@ -54,11 +55,11 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-6 md:p-7">
-        <p className="flex items-center justify-between gap-3 font-mono text-xs text-muted">
-          <span className={cn(project.isFeatured && "text-accent")}>
+        <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs text-muted">
+          <span className={cn("whitespace-nowrap", project.isFeatured && "text-accent")}>
             {project.isFeatured ? `★ ${project.context}` : project.context}
           </span>
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
             <span
               aria-hidden="true"
               className="size-2 rounded-full"
@@ -155,20 +156,20 @@ export function Work() {
           Things I&apos;ve <span className="font-serif font-normal text-accent italic">made</span>
         </SectionHeading>
 
-        <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <SwipeList label="Projects" className="md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <li key={project.slug} className={cn(project.isFeatured && "md:col-span-2")}>
+            <li key={project.slug} className={cn(SWIPE_ITEM_CLASS, project.isFeatured && "md:col-span-2")}>
               <Reveal className="h-full" delay={(index % 3) * 0.06}>
                 <ProjectCard project={project} />
               </Reveal>
             </li>
           ))}
-          <li className="md:col-span-2 lg:col-span-2">
+          <li className={cn(SWIPE_ITEM_CLASS, "md:col-span-2 lg:col-span-2")}>
             <Reveal className="h-full">
               <GitHubCard />
             </Reveal>
           </li>
-        </ul>
+        </SwipeList>
       </div>
     </section>
   );

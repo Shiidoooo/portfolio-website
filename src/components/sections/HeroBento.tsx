@@ -67,12 +67,14 @@ export function HeroBento() {
               <p className="max-w-lg text-base leading-relaxed text-paper/70 md:text-lg">{profile.intro}</p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <ButtonLink href="#work" variant="primary">
-                See my work
-                <ArrowDown aria-hidden="true" className="size-4" />
-              </ButtonLink>
-              <EmailMenu email={profile.email} subject={profile.emailSubject} label="Email me" variant="secondary" />
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <div className="grid gap-3 sm:flex">
+                <ButtonLink href="#work" variant="primary">
+                  See my work
+                  <ArrowDown aria-hidden="true" className="size-4" />
+                </ButtonLink>
+                <EmailMenu email={profile.email} subject={profile.emailSubject} label="Email me" variant="secondary" />
+              </div>
               <div className="flex gap-1">
                 <a
                   href={socialLinks.github.href}
@@ -115,7 +117,7 @@ export function HeroBento() {
 
         {/* Portrait + right now */}
         <motion.div {...tileMotion(2)} className="lg:row-span-2">
-          <SpotlightCard className="group relative h-full min-h-[30rem] md:min-h-80">
+          <SpotlightCard className="group relative h-full min-h-[26rem] md:min-h-80">
             <Image
               src={portrait.src}
               alt={portrait.alt}
@@ -154,8 +156,11 @@ export function HeroBento() {
           >
             <span className="text-xs text-muted">{"// psst"}</span>
             <span className="text-sm leading-relaxed text-paper/85">
-              There&apos;s another side to this site. Press{" "}
-              <kbd className="rounded border border-line-strong px-1.5 text-accent">~</kbd> or click here.
+              There&apos;s another side to this site.{" "}
+              <span className="pointer-coarse:hidden">
+                Press <kbd className="rounded border border-line-strong px-1.5 text-accent">~</kbd> or click here.
+              </span>
+              <span className="hidden pointer-coarse:inline">Tap here to find it.</span>
             </span>
             <span className="phosphor text-sm">
               $ dev-mode --on

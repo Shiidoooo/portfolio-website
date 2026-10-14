@@ -2,6 +2,7 @@ import { Bot, BrainCircuit, Sparkles, Workflow, type LucideIcon } from "lucide-r
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { SWIPE_ITEM_CLASS, SwipeList } from "@/components/ui/SwipeList";
 import { aiIntro, aiPillars } from "@/content/profile";
 
 const PILLAR_ICONS: LucideIcon[] = [Bot, Workflow, Sparkles, BrainCircuit];
@@ -14,11 +15,11 @@ export function AiSection() {
           Building with <span className="font-serif font-normal text-accent italic">AI</span>
         </SectionHeading>
 
-        <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <SwipeList label="How I use AI" className="md:grid-cols-2">
           {aiPillars.map((pillar, index) => {
             const Icon = PILLAR_ICONS[index % PILLAR_ICONS.length];
             return (
-              <li key={pillar.title}>
+              <li key={pillar.title} className={SWIPE_ITEM_CLASS}>
                 <Reveal className="h-full" delay={index * 0.08}>
                   <SpotlightCard className="flex h-full flex-col gap-4 p-6 md:p-7">
                     <span className="flex size-11 items-center justify-center rounded-xl border border-accent/25 bg-accent-soft text-accent">
@@ -41,7 +42,7 @@ export function AiSection() {
               </li>
             );
           })}
-        </ul>
+        </SwipeList>
       </div>
     </section>
   );
