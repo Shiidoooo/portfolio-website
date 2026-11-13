@@ -253,6 +253,14 @@ export const experience: Employer[] = [
 // Milestones only, newest first like `git log`. Shown by Dev Mode's `git log`. Keep it short.
 export const journey: Commit[] = [
   {
+    date: "Nov 2026",
+    message: "Build Libreng Invoice, a personal project",
+    tag: "side-project",
+    details: [
+      "A free invoice, quotation and receipt maker for small businesses in the Philippines, with PDFs, emailing and payment tracking. My first app with a real cloud backend and its own privacy policy.",
+    ],
+  },
+  {
     date: "Oct 2026",
     message: "Build Git History Visualizer, a personal project",
     tag: "side-project",
@@ -322,6 +330,26 @@ export const projects: Project[] = [
     image: null,
     art: "gourd-phone",
     isFeatured: true,
+  },
+  {
+    slug: "libreng-invoice",
+    title: "Libreng Invoice",
+    context: "Side project",
+    period: "2026",
+    description:
+      "A free invoice, quotation and receipt maker for sari-sari stores, small shops and freelancers in the Philippines, with no subscription and no paywall on the PDF. Price items per piece or per kilo, download the PDF, email it with the PDF attached, and track who still owes you. Each account only ever sees its own data, enforced by the database itself.",
+    language: "TypeScript",
+    stack: ["React", "TypeScript", "Vite", "Supabase", "Postgres", "Brevo", "jsPDF"],
+    links: [
+      { label: "Live site", href: "https://libreng-invoice.vercel.app/" },
+      { label: "Source code", href: "https://github.com/Shiidoooo/libreng-invoice" },
+    ],
+    image: {
+      src: "/projects/libreng-invoice.png",
+      alt: "Libreng Invoice sign-in page with the headline “Invoices and receipts for your business. Libre.” and a sample receipt",
+    },
+    art: null,
+    isFeatured: false,
   },
   {
     slug: "git-history-visualizer",
