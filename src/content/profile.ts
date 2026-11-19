@@ -108,8 +108,9 @@ export const socialLinks = {
   githubOld: { label: "Older GitHub", href: "https://github.com/Shiido09" },
   linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/tan-josh-ziemenn-074772399/" },
   email: { label: "Email", href: `mailto:${profile.email}` },
-  // Cloudinary serves this as an image of the one-page CV (raw PDF delivery is disabled on the account).
-  resume: { label: "Resume", href: "https://res.cloudinary.com/dcfhfo3ol/image/upload/f_auto/q_auto/TAN_CV_uaxlpn.pdf" },
+  // public/Josh_Tan_Resume.pdf: a real PDF so its links stay clickable, without the phone number
+  // because the repo is public. Absolute, because the terminal and new-tab handling only open https:// links.
+  resume: { label: "Resume", href: "https://portfolio-website-zeta-neon-41.vercel.app/Josh_Tan_Resume.pdf" },
 } satisfies Record<string, ExternalLink>;
 
 export const portrait = {
