@@ -255,6 +255,14 @@ export const experience: Employer[] = [
 export const journey: Commit[] = [
   {
     date: "Nov 2026",
+    message: "Build Kalasag Audit, a personal project",
+    tag: "side-project",
+    details: [
+      "A zero-dependency Node.js web security auditor and multi-page crawler with a web dashboard, CLI, printable PDFs and AI-ready Markdown reports, deployed on Vercel with SSRF and rate-limit guards.",
+    ],
+  },
+  {
+    date: "Nov 2026",
     message: "Build Libreng Invoice, a personal project",
     tag: "side-project",
     details: [
@@ -331,6 +339,26 @@ export const projects: Project[] = [
     image: null,
     art: "gourd-phone",
     isFeatured: true,
+  },
+  {
+    slug: "kalasag-audit",
+    title: "Kalasag Audit",
+    context: "Side project",
+    period: "2026",
+    description:
+      "A zero-dependency web security and posture auditor that crawls same-origin pages and checks SSL, security headers, cookies, exposed files (.env, .git, SQL dumps), forms, outdated scripts and DNS protection without flooding you with false alarms. Exports printable A4 PDFs and AI-ready Markdown reports, and runs both on Vercel (with SSRF protection and rate limiting) and locally as a deeper CLI and web tool.",
+    language: "JavaScript",
+    stack: ["Node.js", "JavaScript", "HTML/CSS", "Vercel Serverless", "CLI"],
+    links: [
+      { label: "Live site", href: "https://kalasag-audit.vercel.app/" },
+      { label: "Source code", href: "https://github.com/Shiidoooo/Kalasag-Audit" },
+    ],
+    image: {
+      src: "/projects/kalasag-audit.png",
+      alt: "Kalasag Audit web security scanner showing the obsidian shield emblem, URL input, and multi-page crawl selector",
+    },
+    art: null,
+    isFeatured: false,
   },
   {
     slug: "libreng-invoice",
