@@ -165,11 +165,11 @@ export const publication: Publication = {
 };
 
 export const skillGroups: SkillGroup[] = [
-  { label: "Languages", items: ["JavaScript", "TypeScript", "PHP", "Python", "C#", "Java", "HTML/CSS"] },
-  { label: "Frameworks", items: ["React", "Next.js", "React Native", "Node.js", "Express", "Laravel", "Flask", "Tailwind CSS", "Bootstrap"] },
-  { label: "Databases", items: ["MySQL", "Oracle", "SQL Server", "MongoDB", "SQLite", "Firebase"] },
-  { label: "Cloud & auth", items: ["Cloudinary", "Firebase Auth", "Google Sign-In"] },
-  { label: "Tools", items: ["Git", "Postman", "Insomnia", "TOAD for Oracle", "SSMS", "MySQL Workbench"] },
+  { label: "Languages", items: ["PHP", "JavaScript", "TypeScript", "SQL", "Python", "C#", "Java", "HTML/CSS"] },
+  { label: "Frameworks", items: ["Laravel", "React", "Next.js", "React Native", "Node.js", "Express", "Flask", "Tailwind CSS", "Bootstrap"] },
+  { label: "Databases", items: ["MySQL", "SQL Server", "Oracle", "PostgreSQL", "Supabase", "MongoDB", "SQLite", "Firebase"] },
+  { label: "Servers & Cloud", items: ["Windows Server", "IIS", "SSL/TLS", "Vercel", "Supabase", "Cloudinary", "Firebase Auth", "Google Sign-In"] },
+  { label: "Tools & Testing", items: ["Git/GitHub", "Postman", "Insomnia", "SSMS", "TOAD for Oracle", "MySQL Workbench", "Vitest", "Security Hardening"] },
   { label: "AI", items: ["Claude Code", "OpenAI Codex", "Gemini", "OpenCode", "Subagents", "Agent skills", "MCP", "Gemini API", "TensorFlow Lite"] },
 ];
 
@@ -217,8 +217,11 @@ const juniorDeveloperRole: Role = {
   employmentType: "Full-time",
   period: "Sep 2026 – Present",
   highlights: [
-    "Maintain, build and improve PhilFirst's web platforms, from internal systems to public-facing websites.",
-    "Develop new APIs and improve existing ones.",
+    "Rebuilt legacy business systems from the ground up into modern Laravel/PHP web applications and overhauled existing internal and public-facing platforms end to end.",
+    "Design and ship scalable Laravel REST APIs and SQL integrations backed by SQL Server and Oracle databases.",
+    "Eliminated manual operational workflows by engineering scheduled background jobs and automated email notification pipelines.",
+    "Deploy, configure, and administer UAT and production web applications on Windows Server and IIS, including SSL/TLS certificate provisioning and renewals.",
+    "Lead pre-release QA and application security reviews: functional and API testing, authentication and access-control audits, and web security hardening.",
   ],
 };
 
@@ -227,8 +230,8 @@ const webDeveloperRole: Role = {
   employmentType: "Contract",
   period: "Jun 2026 – Aug 2026",
   highlights: [
-    "Built internal tools and web apps in PHP, connecting the frontend pages to backend APIs.",
-    "Wrote the SQL and mapping workflows that keep MySQL, Oracle and SQL Server in sync.",
+    "Engineered full-stack web applications connecting responsive frontend interfaces to Laravel REST APIs with strict server-side validation and SQL persistence.",
+    "Authored complex SQL queries and automated data-mapping workflows to synchronize business records accurately across MySQL, Oracle, and SQL Server.",
   ],
 };
 
@@ -237,9 +240,9 @@ const internRole: Role = {
   employmentType: "Internship",
   period: "Feb 2026 – Jun 2026",
   highlights: [
-    "Built a C# Windows Forms app that moves data between MySQL and Oracle, plus PHP APIs that map records into the system.",
-    "Made a vanilla PHP tool with PHPMailer that splits PDFs automatically and emails them out.",
-    "Helped build an online service request system, where requests are filed, tracked and resolved in one place.",
+    "Built a C# Windows Forms ETL utility that maps, fetches, and transfers operational datasets between MySQL and Oracle, alongside PHP APIs loading records into the core system.",
+    "Automated high-volume document distribution with a vanilla PHP and PHPMailer tool that splits multi-page PDFs and emails each document directly to its recipient.",
+    "Co-developed an internal online service request portal enabling teams to submit, track, and resolve support tickets in one centralized workflow.",
   ],
 };
 
