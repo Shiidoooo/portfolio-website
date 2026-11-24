@@ -217,11 +217,11 @@ const juniorDeveloperRole: Role = {
   employmentType: "Full-time",
   period: "Sep 2026 – Present",
   highlights: [
-    "Rebuilt legacy business systems from the ground up into modern Laravel/PHP web applications and overhauled existing internal and public-facing platforms end to end.",
-    "Design and ship scalable Laravel REST APIs and SQL integrations backed by SQL Server and Oracle databases.",
-    "Eliminated manual operational workflows by engineering scheduled background jobs and automated email notification pipelines.",
-    "Deploy, configure, and administer UAT and production web applications on Windows Server and IIS, including SSL/TLS certificate provisioning and renewals.",
-    "Lead pre-release QA and application security reviews: functional and API testing, authentication and access-control audits, and web security hardening.",
+    "Rebuilt legacy enterprise systems from the ground up into modern Laravel/PHP full-stack web applications and modernized existing internal and public-facing platforms end to end.",
+    "Architect, build, and maintain Laravel REST APIs, authentication flows, and SQL integrations backed by SQL Server (sqlsrv), Oracle, and MySQL databases.",
+    "Eliminated repetitive manual business processes by engineering scheduled background jobs, automated report generation, and email notification pipelines.",
+    "Deploy, configure, and administer UAT and production applications on Windows Server and IIS, managing site bindings, server configs, and SSL/TLS certificates.",
+    "Lead pre-release QA and application security reviews: functional and API testing, authentication and role-based access control (RBAC) audits, and web security hardening.",
   ],
 };
 
@@ -230,8 +230,10 @@ const webDeveloperRole: Role = {
   employmentType: "Contract",
   period: "Jun 2026 – Aug 2026",
   highlights: [
-    "Engineered full-stack web applications connecting responsive frontend interfaces to Laravel REST APIs with strict server-side validation and SQL persistence.",
-    "Authored complex SQL queries and automated data-mapping workflows to synchronize business records accurately across MySQL, Oracle, and SQL Server.",
+    "Engineered full-stack web applications across frontend UI and backend PHP/Laravel REST APIs, implementing strict server-side validation and SQL persistence.",
+    "Designed complex SQL queries and automated data-mapping workflows to integrate and synchronize records accurately across MySQL, Oracle, and SQL Server (sqlsrv).",
+    "Built internal administrative portals, reporting views, and database-driven business tools supporting daily multi-department operations.",
+    "Maintained and optimized existing PHP and SQL systems, resolving production defects, tuning queries, and streamlining operational workflows.",
   ],
 };
 
@@ -240,9 +242,11 @@ const internRole: Role = {
   employmentType: "Internship",
   period: "Feb 2026 – Jun 2026",
   highlights: [
-    "Built a C# Windows Forms ETL utility that maps, fetches, and transfers operational datasets between MySQL and Oracle, alongside PHP APIs loading records into the core system.",
+    "Built and shipped multiple full-stack internal web applications using PHP, SQL, MySQL, and SQL Server (sqlsrv), owning both frontend interfaces and backend database logic.",
+    "Co-developed an Online Service Request (OSR) portal allowing teams to file, route, track, and resolve internal service tickets in one centralized workflow.",
+    "Developed a C# Windows Forms ETL utility that maps, fetches, and transfers operational datasets between MySQL and Oracle, paired with PHP APIs loading business-critical records into the core system.",
     "Automated high-volume document distribution with a vanilla PHP and PHPMailer tool that splits multi-page PDFs and emails each document directly to its recipient.",
-    "Co-developed an internal online service request portal enabling teams to submit, track, and resolve support tickets in one centralized workflow.",
+    "Supported database querying, data troubleshooting, and feature enhancements across SQL Server, MySQL, and Oracle environments.",
   ],
 };
 
