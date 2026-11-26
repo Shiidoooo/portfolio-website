@@ -166,10 +166,10 @@ export const publication: Publication = {
 
 export const skillGroups: SkillGroup[] = [
   { label: "Languages", items: ["PHP", "JavaScript", "TypeScript", "SQL", "Python", "C#", "Java", "HTML/CSS"] },
-  { label: "Frameworks", items: ["Laravel", "React", "Next.js", "React Native", "Node.js", "Express", "Flask", "Tailwind CSS", "Bootstrap"] },
+  { label: "Frameworks", items: ["Laravel", "Symfony components", "React", "Next.js", "React Native", "Node.js", "Express", "Flask", "Tailwind CSS", "Bootstrap"] },
   { label: "Databases", items: ["MySQL", "SQL Server", "Oracle", "PostgreSQL", "Supabase", "MongoDB", "SQLite", "Firebase"] },
-  { label: "Servers & Cloud", items: ["Windows Server", "IIS", "SSL/TLS", "Vercel", "Supabase", "Cloudinary", "Firebase Auth", "Google Sign-In"] },
-  { label: "Tools & Testing", items: ["Git/GitHub", "Postman", "Insomnia", "SSMS", "TOAD for Oracle", "MySQL Workbench", "Vitest", "Security Hardening"] },
+  { label: "Servers & Cloud", items: ["Microsoft Azure", "Windows Server", "IIS", "SSL/TLS", "Docker", "Vercel", "Supabase", "Cloudinary", "Firebase Auth", "Google Sign-In"] },
+  { label: "Tools & Testing", items: ["Git/GitHub", "CI pipelines (YAML)", "Postman", "Insomnia", "SSMS", "TOAD for Oracle", "MySQL Workbench", "Vitest", "Security Hardening"] },
   { label: "AI", items: ["Claude Code", "OpenAI Codex", "Gemini", "OpenCode", "Subagents", "Agent skills", "MCP", "Gemini API", "TensorFlow Lite"] },
 ];
 
@@ -220,8 +220,8 @@ const juniorDeveloperRole: Role = {
     "Rebuilt legacy enterprise systems from the ground up into modern Laravel/PHP full-stack web applications and modernized existing internal and public-facing platforms end to end.",
     "Architect, build, and maintain Laravel REST APIs, authentication flows, and SQL integrations backed by SQL Server (sqlsrv), Oracle, and MySQL databases.",
     "Eliminated repetitive manual business processes by engineering scheduled background jobs, automated report generation, and email notification pipelines.",
-    "Deploy, configure, and administer UAT and production applications on Windows Server and IIS, managing site bindings, server configs, and SSL/TLS certificates.",
-    "Lead pre-release QA and application security reviews: functional and API testing, authentication and role-based access control (RBAC) audits, and web security hardening.",
+    "Deploy, configure, and administer UAT and production applications on Azure Windows Server VMs and IIS, managing site bindings, server configs, and SSL/TLS certificates.",
+    "Lead pre-release QA and application security reviews: functional and API testing, authentication and role-based access control (RBAC) audits, and web security hardening, with automated checks in YAML CI pipelines.",
   ],
 };
 
