@@ -217,7 +217,7 @@ const juniorDeveloperRole: Role = {
   employmentType: "Full-time",
   period: "Sep 2026 – Present",
   highlights: [
-    "Rebuilt legacy enterprise systems from the ground up into modern Laravel/PHP full-stack web applications and modernized existing internal and public-facing platforms end to end.",
+    "Built new enterprise systems from scratch and rebuilt legacy ones from the ground up as modern Laravel/PHP full-stack web applications, covering internal and public-facing platforms end to end.",
     "Architect, build, and maintain Laravel REST APIs, authentication flows, and SQL integrations backed by SQL Server (sqlsrv), Oracle, and MySQL databases.",
     "Eliminated repetitive manual business processes by engineering scheduled background jobs, automated report generation, and email notification pipelines.",
     "Deploy, configure, and administer UAT and production applications on Azure Windows Server VMs and IIS, managing site bindings, server configs, and SSL/TLS certificates.",
